@@ -2,10 +2,12 @@
 
 This project is a sample Web API tester project. It contains the test website and the files to test Web API security. We would need Python installed to run these files, which we can do here: [Python Download](https://www.python.org/downloads/)
 
-Once Python is installed, we can run `pip install -r requirements.txt` to install all Python dependencies for this project. 
+## Setup
 
-# Website Setup
+`scanner_files` folder contains bash scripts which can be executed. We need to make sure that these packages are installed first.
 
-The website is made using React and Flask. We would need to install Python and Node.js in order to run the `test_website`. They can be installed here:
+- `whatweb`: Responsible for analyzing web request and providing some basic info about the technologies used. 
 
-[Node.js Download](https://nodejs.org/en/download)
+## Web server setup
+
+For testing, we can use Metasploitable3 or the OWASP Juice Shop, which can be installed here [OWASP Juice Setup](https://owasp.org/www-project-juice-shop/)
