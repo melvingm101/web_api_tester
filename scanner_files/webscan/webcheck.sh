@@ -10,3 +10,4 @@ rm -f scan_report.json
 # Aggressive setting is set to 3 with -a 3
 # Output is logged in scan_report.json
 whatweb -v --log-json=scan_report.json -a 3 $website_name
+python basic_info.py
