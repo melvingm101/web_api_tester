@@ -14,14 +14,14 @@ def discover_cves(params):
     if vuln_count > 0:
         # This filters the list of high or critical vulnerabilities
         critical_list = [
-            {"id": cve_data.id, "score": cve_data.score } 
-            for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
+            {"id": cve_data["id"], "score": cve_data["score"] } 
+            for cve_data in vuln_list if cve_data["score"][2] in ["HIGH", "CRITICAL"]
         ]
 
         # The vulnerabilities are now listed.
         print(f"\033[91m{vuln_count} vulnerability records present, following High/Critical CVEs found:\033[0m")
         for cve in critical_list:
-            print(f"CVE ID: {cve.id} | Score: {cve.score}")
+            print(f"CVE ID: {cve["id"]} | Score: {cve["score"]}")
     else:
         # If list is empty, no CVEs are detected.
         print("No CVEs detected.")
