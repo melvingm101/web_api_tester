@@ -19,9 +19,9 @@ def discover_cves(params):
         ]
 
         # The vulnerabilities are now listed.
-        print(f"\033[91m${vuln_count} vulnerability records present, following High/Critical CVEs found:\033[0m")
+        print(f"\033[91m{vuln_count} vulnerability records present, following High/Critical CVEs found:\033[0m")
         for cve in critical_list:
-            print(f"CVE ID: ${cve.id} | Score: ${cve.score}")
+            print(f"CVE ID: {cve.id} | Score: {cve.score}")
     else:
         # If list is empty, no CVEs are detected.
         print("No CVEs detected.")
@@ -35,9 +35,9 @@ def read_and_parse_json(filepath):
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
-            print("Data found:")
-            print(data)
-
+            if isinstance(data, list):
+                website_details = data[0]
+                print(website_details["plugins"])
             # Passing placeholder for now, will make it more dynamic later
             discover_cves("apache 2.4.7")
     except Exception as e:
