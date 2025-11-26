@@ -37,9 +37,27 @@ def read_and_parse_json(filepath):
             data = json.load(file)
             if isinstance(data, list):
                 website_details = data[0]
-                print(website_details["plugins"])
+                services = []
+                other_info = {}
+                if "plugins" in website_details:
+                    plugins_list = website_details["plugins"]
+                    for key in plugins_list:
+                        if "version" in plugins_list[key]:
+                            services.append(key + " " + plugins_list[key]["version"][0])
+                        elif "string" in plugins_list[key]:
+                            other_info[key] = plugins_list[key]["string"][0]
+                
+                print("Checking for CVEs...")
+                for service in services:
+                    discover_cves(service)
+                print("===========================================================")
+                print(f"More details about {website_details["target"]}:")
+                for info_key, info_value in other_info.items():
+                    print(f"{info_key}: {info_value}")
             # Passing placeholder for now, will make it more dynamic later
-            discover_cves("apache 2.4.7")
+            
     except Exception as e:
         # Handle other general errors
         print(f"\033[91mAn unexpected error occurred: {e}\033[0m")
+
+read_and_parse_json(REPORT_FILENAME)
