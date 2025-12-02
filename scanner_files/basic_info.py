@@ -58,10 +58,16 @@ def read_and_parse_json(filepath):
                             other_info[key] = plugins_list[key]["string"][0]
                 
                 print_progress_bar(loop_through_cves, "[info]Searching for CVEs...", services)
-                print("===========================================================")
-                print(f"More details about {website_details["target"]}:")
-                for info_key, info_value in other_info.items():
-                    print(f"{info_key}: {info_value}")
+                print_success(f"More details about {website_details["target"]}:")
+                print_table(f"More details about {website_details["target"]}:",
+                    [
+                        { "name": "Header info", "style": "info" },
+                        { "name": "Value", "style": "warning" },
+                    ],
+                    [
+                        (info_key, info_value) for info_key, info_value in other_info.items()
+                    ]
+                )
             # Passing placeholder for now, will make it more dynamic later
             
     except Exception as e:
