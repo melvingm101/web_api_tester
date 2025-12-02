@@ -2,17 +2,21 @@
 from rich.console import Console
 from rich.theme import Theme
 from rich.table import Table
-from time import sleep
+from rich.panel import Panel
+import sys
 
 custom_theme = Theme({
     "info": "cyan3",
     "warning": "magenta",
-    "danger": "bold red",
-    "success": "bold green",
-    "repr.number": "bold green"
+    "danger": "red",
+    "success": "green",
+    "repr.number": "bold red"
 })
 
 console=Console(theme=custom_theme)
+
+def print_panel(message, heading):
+    console.print(Panel(message, title=heading), style="info")
 
 def print_log(message):
     console.log(message, style="info")
@@ -36,3 +40,10 @@ def print_error(message):
 def print_progress_bar(func, message, *args):
     with console.status(message) as status:
         func(*args)
+
+if __name__ == "__main__":
+    function_name = sys.argv[1]
+    func_args = sys.argv[2:]
+
+    if function_name == "print_panel":
+        print_panel(message=func_args[0], heading=func_args[1])
