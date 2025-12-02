@@ -20,10 +20,11 @@ def discover_cves(params):
             [
                 { "name": "CVE ID", "style": "info" },
                 { "name": "Score", "style": "warning" },
-                { "name": "Category", "style": "danger" }
+                { "name": "Category", "style": "danger" },
+                { "name": "URL", "style": "info" },
             ],
             [
-                (cve_data.id, str(cve_data.score[1]), cve_data.score[2]) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
+                (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
             ]
         )
     else:
