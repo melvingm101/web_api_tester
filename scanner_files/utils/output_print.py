@@ -4,14 +4,13 @@ from rich.theme import Theme
 from rich.table import Table
 from rich.panel import Panel
 from rich.tree import Tree
-import sys
 
 custom_theme = Theme({
     "info": "cyan3",
-    "warning": "magenta",
+    "warning": "sky_blue1",
     "danger": "red",
     "success": "green",
-    "repr.number": "bold red"
+    "repr.number": "bold sky_blue1"
 })
 
 console=Console(theme=custom_theme)
@@ -27,7 +26,7 @@ def print_tree(options_list):
     console.print(tree)
 
 def print_panel(message, heading):
-    console.print(Panel(message, title=heading), style="info")
+    console.print(Panel(message, title=heading), style="info", justify="center")
 
 def print_log(message):
     console.log(message, style="info")

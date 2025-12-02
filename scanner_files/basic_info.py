@@ -59,7 +59,7 @@ def read_and_parse_json(filepath):
                 
                 print_progress_bar(loop_through_cves, "[info]Searching for CVEs...", services)
                 print_success(f"More details about {website_details["target"]}:")
-                print_table(f"More details about {website_details["target"]}:",
+                print_table("",
                     [
                         { "name": "Header info", "style": "info" },
                         { "name": "Value", "style": "warning" },
