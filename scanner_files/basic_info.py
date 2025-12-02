@@ -13,7 +13,6 @@ def discover_cves(params):
     # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
     vuln_list = nvdlib.searchCVE(**search_params)
     vuln_count = len(vuln_list)
-    vuln_list[0].url
     if vuln_count > 0:
         # The vulnerabilities are now listed.
         print_error(f"{vuln_count} vulnerability records present, following High/Critical CVEs found:")
@@ -21,11 +20,10 @@ def discover_cves(params):
             [
                 { "name": "CVE ID", "style": "info" },
                 { "name": "Score", "style": "warning" },
-                { "name": "Category", "style": "danger" },
-                { "name": "URL", "style": "info" },
+                { "name": "Category", "style": "danger" }
             ],
             [
-                (cve_data.id, cve_data.score[1], cve_data.score[2], cve_data.url) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
+                (cve_data.id, cve_data.score[1], cve_data.score[2]) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
             ]
         )
     else:
