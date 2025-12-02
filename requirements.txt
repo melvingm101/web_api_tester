@@ -1,1 +1,2 @@
-nvdlib==0.8.3
+nvdlib
+rich
