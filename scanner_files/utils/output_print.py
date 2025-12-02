@@ -16,6 +16,9 @@ custom_theme = Theme({
 
 console=Console(theme=custom_theme)
 
+def print_info(message):
+    console.print(message, style="info")
+
 def print_tree(options_list):
     tree = Tree("Options")
     for option in options_list:
@@ -48,12 +51,3 @@ def print_error(message):
 def print_progress_bar(func, message, *args):
     with console.status(message) as status:
         func(*args)
-
-if __name__ == "__main__":
-    function_name = sys.argv[1]
-    func_args = sys.argv[2:]
-
-    if function_name == "print_panel":
-        print_panel(message=func_args[0], heading=func_args[1])
-    elif function_name == "print_tree":
-        print_tree(func_args)
