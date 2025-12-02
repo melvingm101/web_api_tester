@@ -53,7 +53,7 @@ def read_and_parse_json(filepath):
                         elif "string" in plugins_list[key]:
                             other_info[key] = plugins_list[key]["string"][0]
                 
-                print_progress_bar(loop_through_cves, "[info]Searching for CVEs...")
+                print_progress_bar(loop_through_cves, "[info]Searching for CVEs...", services)
                 print("===========================================================")
                 print(f"More details about {website_details["target"]}:")
                 for info_key, info_value in other_info.items():

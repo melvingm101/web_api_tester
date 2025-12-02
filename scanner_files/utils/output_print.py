@@ -9,7 +9,7 @@ custom_theme = Theme({
     "warning": "magenta",
     "danger": "bold red",
     "success": "bold green",
-    "repr.number": "bold green blink"
+    "repr.number": "bold green"
 })
 
 console=Console(theme=custom_theme)
@@ -20,6 +20,6 @@ def print_success(message):
 def print_error(message):
     console.print(message, style="danger")
 
-def print_progress_bar(func, message):
+def print_progress_bar(func, message, **args):
     with console.status(message) as status:
-        func()
+        func(**args)
