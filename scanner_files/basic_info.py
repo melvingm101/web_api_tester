@@ -57,7 +57,10 @@ def read_and_parse_json(filepath):
                         elif "string" in plugins_list[key]:
                             other_info[key] = plugins_list[key]["string"][0]
                 
-                print_progress_bar(loop_through_cves, "[info]Searching for CVEs...", services)
+                if len(services) > 0:
+                    print_progress_bar(loop_through_cves, "[info]Searching for CVEs...", services)
+                else:
+                    print_success("No CVEs detected")
                 print_success(f"More details about {website_details["target"]}:")
                 print_table("",
                     [
@@ -68,7 +71,6 @@ def read_and_parse_json(filepath):
                         (info_key, info_value) for info_key, info_value in other_info.items()
                     ]
                 )
-            # Passing placeholder for now, will make it more dynamic later
             
     except Exception as e:
         # Handle other general errors

@@ -42,8 +42,7 @@ def print_success(message):
     console.print(message, style="success")
 
 def print_error(message):
-    console_error = Console(theme=Theme({"repr.number": "bold red3"}))
-    console_error.print(message, style="red3")
+    console.print(message, style="danger")
 
 def print_progress_bar(func, message, *args):
     with console.status(message) as status:

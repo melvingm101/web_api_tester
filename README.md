@@ -4,10 +4,13 @@ This project is a sample Web API tester project. It contains the test website an
 
 ## Setup
 
-`scanner_files` folder contains bash scripts which can be executed. We need to make sure that these packages are installed first.
+- `scanner_files` folder contains bash scripts which can be executed. We need to make sure that these packages are installed first.
 
 - `whatweb`: Responsible for analyzing web request and providing some basic info about the technologies used. 
 
-## Web server setup
+To start, first we need to create and activate a Python virtual environment. It can be done with the following commands:
 
-For testing, we can use Metasploitable3 or the OWASP Juice Shop, which can be installed here [OWASP Juice Setup](https://owasp.org/www-project-juice-shop/)
+- `python -m venv venv`
+- `source venv/bin/activate` 
+
+Next, we can then run `pip install -r requirements.txt` to install all the necessary Python packages. Once this is done, we can then head inside the `scanner_files` folder and run `./main.sh`.
