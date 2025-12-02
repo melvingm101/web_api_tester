@@ -3,6 +3,7 @@ from rich.console import Console
 from rich.theme import Theme
 from rich.table import Table
 from rich.panel import Panel
+from rich.tree import Tree
 import sys
 
 custom_theme = Theme({
@@ -14,6 +15,13 @@ custom_theme = Theme({
 })
 
 console=Console(theme=custom_theme)
+
+def print_tree(options_list):
+    tree = Tree("Options")
+    for option in options_list:
+        tree.add(option)
+    
+    console.print(tree)
 
 def print_panel(message, heading):
     console.print(Panel(message, title=heading), style="info")
@@ -47,3 +55,5 @@ if __name__ == "__main__":
 
     if function_name == "print_panel":
         print_panel(message=func_args[0], heading=func_args[1])
+    elif function_name == "print_tree":
+        print_tree(func_args)
