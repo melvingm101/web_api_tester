@@ -20,6 +20,6 @@ def print_success(message):
 def print_error(message):
     console.print(message, style="danger")
 
-def print_progress_bar(func, message, **args):
+def print_progress_bar(func, message, *args):
     with console.status(message) as status:
-        func(**args)
+        func(*args)
