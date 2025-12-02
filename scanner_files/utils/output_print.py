@@ -8,7 +8,7 @@ from rich.tree import Tree
 custom_theme = Theme({
     "info": "cyan3",
     "warning": "sky_blue1",
-    "danger": "red",
+    "danger": "red3",
     "success": "green",
     "repr.number": "bold sky_blue1"
 })
@@ -28,9 +28,6 @@ def print_tree(options_list):
 def print_panel(message, heading):
     console.print(Panel(message, title=heading), style="info", justify="center")
 
-def print_log(message):
-    console.log(message, style="info")
-
 def print_table(table_title, columns, data_tuple_list):
     table = Table(title=table_title)
     for column in columns:
@@ -45,7 +42,8 @@ def print_success(message):
     console.print(message, style="success")
 
 def print_error(message):
-    console.print(message, style="danger")
+    console_error = Console(theme=Theme({"repr.number": "bold red3"}))
+    console_error.print(message, style="red3")
 
 def print_progress_bar(func, message, *args):
     with console.status(message) as status:
