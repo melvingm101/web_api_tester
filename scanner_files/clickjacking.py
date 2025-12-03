@@ -16,7 +16,7 @@ def is_clickjacking_possible(header_info):
             return False
         else:
             return True
-        
+    
     if "UncommonHeaders" in header_info:
         if "content-security-policy" in header_info["UncommonHeaders"]:
             return False
@@ -40,7 +40,7 @@ def clickjacking_test(filepath):
     print_console_test(other_info)
     print_info("Checking for clickjacking...")
     clickjacking_support = is_clickjacking_possible(header_info=other_info)
-    if clickjacking_support:
+    if not clickjacking_support:
         print_success("Clickjacking headers in place.")
     else:
         print_error("No X-Frame-Options or CSP Headers present!")
