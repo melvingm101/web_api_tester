@@ -38,8 +38,8 @@ def clickjacking_test(filepath):
     print_error("Other info is as follows: ")
     print_console_test(other_info)
     print_info("Checking for clickjacking...")
-    is_clickjacking_possible = is_clickjacking_possible(header_info=other_info)
-    if is_clickjacking_possible:
+    clickjacking_support = is_clickjacking_possible(header_info=other_info)
+    if clickjacking_support:
         print_success("Clickjacking headers in place.")
     else:
         print_error("No X-Frame-Options or CSP Headers present!")
