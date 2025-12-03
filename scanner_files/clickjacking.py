@@ -20,3 +20,5 @@ def clickjacking_test(filepath):
     _, _, other_info = parse_json(filepath=filepath)
     print_error("Other info is as follows: ")
     print_console_test(other_info)
+
+clickjacking_test(REPORT_FILENAME)
