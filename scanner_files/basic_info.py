@@ -15,8 +15,10 @@ def discover_cves(params):
     vuln_list = nvdlib.searchCVE(**search_params)
     vuln_count = len(vuln_list)
 
-    if params == "Apache 2.2.8":
-        print_output_test(vuln_list)        
+    print_output_test([
+        cve_data
+        for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
+    ])
 
     if vuln_count > 0:
         # The vulnerabilities are now listed.
