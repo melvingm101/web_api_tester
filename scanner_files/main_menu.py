@@ -6,7 +6,7 @@ print_panel(
 )
 
 print_tree(
-    ["1) Check details of given website", "2) Exit"]
+    ["1) Check details of given website", "2) Clickjacking test", "3) Exit"]
 )
 
-print_info("Please type any of the options above to continue (1, 2):")
+print_info("Please type any of the options above to continue (1, 2, 3):")

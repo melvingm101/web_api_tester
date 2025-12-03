@@ -11,5 +11,5 @@ rm -f scan_report.json
 # Output is logged in scan_report.json
 mkdir -p webscan
 whatweb -q --log-json=$(pwd)/webscan/scan_report.json -a 3 $website_name
-python basic_info.py
+python clickjacking.py
 rm -f webscan/scan_report.json

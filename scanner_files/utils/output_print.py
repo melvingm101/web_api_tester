@@ -4,7 +4,6 @@ from rich.theme import Theme
 from rich.table import Table
 from rich.panel import Panel
 from rich.tree import Tree
-from rich import print
 
 custom_theme = Theme({
     "info": "cyan3",
@@ -16,8 +15,8 @@ custom_theme = Theme({
 
 console=Console(theme=custom_theme)
 
-def print_output_test(message):
-    print(message)
+def print_console_test(message):
+    console.print(message)
 
 def print_info(message):
     console.print(message, style="info")
@@ -33,6 +32,14 @@ def print_panel(message, heading):
     console.print(Panel(message, title=heading), style="info", justify="center")
 
 def print_table(table_title, columns, data_tuple_list):
+    """
+    print_table prints out a table with title, columns and populated data in the terminal
+    applying colorful themes
+    
+    :param table_title: Title of the table, can be kept empty
+    :param columns: Column of the table, must be a dictionary of type {"name": "", "style": ""}.  
+    :param data_tuple_list: Data of the table which we need to populate the table. 
+    """
     table = Table(title=table_title)
     for column in columns:
         table.add_column(column["name"], style=column["style"])
@@ -43,9 +50,19 @@ def print_table(table_title, columns, data_tuple_list):
     console.print(table)
 
 def print_success(message):
+    """
+    print_success will print the success message on terminal based on the theme.
+
+    :param message: Message that needs to be printed out
+    """
     console.print(message, style="success")
 
 def print_error(message):
+    """
+    print_error will print the error message on terminal based on the theme.
+
+    :param message: Message that needs to be printed out
+    """
     console.print(message, style="danger")
 
 def print_progress_bar(func, message, *args):
