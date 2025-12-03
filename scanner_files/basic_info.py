@@ -9,7 +9,6 @@ REPORT_FILENAME=os.path.join("webscan", "scan_report.json")
 
 def discover_cves(params):
     search_params = { "keywordSearch": params }
-    print("Params: ", params)
 
     # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
     vuln_list = nvdlib.searchCVE(**search_params)
@@ -17,14 +16,14 @@ def discover_cves(params):
 
     if vuln_count > 0:
         # Gets a list of high/critical vulnerabilities
-        critical_count = [
+        critical_issues = [
             (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
         ]
         
         # The vulnerabilities are now listed.
         print_error(f"{vuln_count} vulnerability records present")
-        if len(critical_count) > 0:
-            print_error(f"{critical_count} high/critical CVEs found:")
+        if len(critical_issues) > 0:
+            print_error(f"{len(critical_issues)} high/critical CVEs found:")
             print_table("",
             [
                 { "name": "CVE ID", "style": "info" },
@@ -32,7 +31,7 @@ def discover_cves(params):
                 { "name": "Category", "style": "danger" },
                 { "name": "URL", "style": "info" },
             ],
-            critical_count
+            critical_issues
         )
         else:
             print_success("No high/critical CVEs detected.")
