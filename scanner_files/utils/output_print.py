@@ -4,6 +4,7 @@ from rich.theme import Theme
 from rich.table import Table
 from rich.panel import Panel
 from rich.tree import Tree
+from rich import print
 
 custom_theme = Theme({
     "info": "cyan3",
@@ -14,6 +15,9 @@ custom_theme = Theme({
 })
 
 console=Console(theme=custom_theme)
+
+def print_output_test(message):
+    print(message)
 
 def print_info(message):
     console.print(message, style="info")
