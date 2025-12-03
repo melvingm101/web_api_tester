@@ -15,25 +15,27 @@ def discover_cves(params):
     vuln_list = nvdlib.searchCVE(**search_params)
     vuln_count = len(vuln_list)
 
-    print_output_test([
-        cve_data
-        for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
-    ])
-
     if vuln_count > 0:
+        # Gets a list of high/critical vulnerabilities
+        critical_count = [
+            (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
+        ]
+        
         # The vulnerabilities are now listed.
-        print_error(f"{vuln_count} vulnerability records present, following High/Critical CVEs found:")
-        print_table("",
+        print_error(f"{vuln_count} vulnerability records present")
+        if len(critical_count) > 0:
+            print_error(f"{critical_count} high/critical CVEs found:")
+            print_table("",
             [
                 { "name": "CVE ID", "style": "info" },
                 { "name": "Score", "style": "warning" },
                 { "name": "Category", "style": "danger" },
                 { "name": "URL", "style": "info" },
             ],
-            [
-                (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
-            ]
+            critical_count
         )
+        else:
+            print_success("No high/critical CVEs detected.")
     else:
         # If list is empty, no CVEs are detected.
         print_success("No CVEs detected.")
