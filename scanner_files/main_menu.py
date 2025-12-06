@@ -34,5 +34,5 @@ def main_menu():
 if __name__ == "__main__":
     if sys.argv[1] == "main_menu":
         main_menu()
-    elif sys.argv[2] == "clickjacking":
+    elif sys.argv[1] == "clickjacking":
         clickjacking()
