@@ -10,25 +10,63 @@
             width: 80%;
             height: 600px;
             margin: 20px auto;
-            border: 2px solid #ccc;
+        }
+
+        .container {
+            position: relative; /* Establishes a context for absolute positioning */
+            width: 300px;
+            height: 100px;
+            margin: 50px;
+            border: 2px dashed #ccc;
+        }
+
+        .button-style {
+            position: absolute; /* Allows precise stacking */
+            width: 200px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            top: 25px;
+            left: 50px;
+        }
+
+        /* The hidden/target button (Layer 2 - Bottom) */
+        #bottom-button {
+            background-color: #ff4d4d; /* Red color */
+            z-index: 10; /* Ensures it's beneath the top button */
+        }
+
+        /* The visible/bait button (Layer 1 - Top) */
+        #top-button {
+            background-color: #4CAF50; /* Green color */
+            color: white;
+            z-index: 20; /* Ensures it is visually on top */
+            
+            /* >>> THE CRITICAL TRICK <<< 
+               This property makes the element visible but incapable of capturing mouse events.
+               The click passes right through it to the element below.
+            */
+            pointer-events: none; 
         }
     </style>
 </head>
 <body>
-    <h1>Content loaded via Jinja variable into iframe</h1>
-    <p>The URL <code>{{ external_url }}</code> was passed from Python and rendered below.</p>
-
     <div class="iframe-container">
         <iframe 
             src="{{ external_url }}" 
             width="100%" 
             height="100%" 
             frameborder="0"
-            allowfullscreen
-            sandbox="allow-forms allow-scripts allow-same-origin allow-popups"    
+            allowfullscreen    
         >
         </iframe>
     </div>
-
+    <script>
+        function logAction(source) {
+            console.log(source)
+        }
+    </script>
 </body>
 </html>
