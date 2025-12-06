@@ -1,5 +1,5 @@
 #!/bin/bash
-python main_menu.py
+python main_menu.py "main_menu"
 read choice
 case $choice in
     1)./webcheck.sh;;

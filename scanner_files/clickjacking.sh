@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Please enter the website you wish to scan: "
+python main_menu.py "clickjacking"
 read website_name
 
 # website_name would contain something like http://test-website:3000
