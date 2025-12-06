@@ -1,3 +1,4 @@
 nvdlib
 rich
 Jinja2
+flask
