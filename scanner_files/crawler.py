@@ -1,9 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from utils.output_print import print_info, print_success, print_error
+from utils.output_print import print_info, print_success, print_error, print_panel
 
 def run_crawler():
+    print_panel("Crawling the provided URL for unique links", ":spider: Web Crawler")
+
     start_url = input("Enter the website URL to crawl (e.g., http://testphp.vulnweb.com): ").strip()
     
     print_info(f"Crawling {start_url} for links...")

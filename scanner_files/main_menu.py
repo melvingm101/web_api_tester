@@ -2,13 +2,22 @@ import sys
 from pathlib import Path
 from utils.output_print import print_panel, print_tree, print_info, print_no_style, add_padding
 
+def basic_info():
+    """
+    This function prints the introduction for basic website scan
+    """
+    print_panel(
+        "A passive scan to check basic details about the website",
+        ":clipboard: Passive scan"
+    )
+
 def clickjacking():
     """
     This clickjacking function prints the introduction of the clickjacking section. 
     """
     print_panel(
         "Clickjacking is a method of tricking users on clicking on items which indirectly causes other actions to occur, such as tricking users into clicking on a button to get a free iPad, but instead their messages in another app is deleted.",
-        ":question: What is clickjacking?"
+        ":exclamation_question_mark: What is clickjacking?"
     )
 
     print_no_style(f"Before proceeding, please ensure to check if your clickjacking template is present in this directory with the filename clickjacking_template.html: [warning]{Path.cwd()}/templates")
@@ -48,3 +57,5 @@ if __name__ == "__main__":
         main_menu()
     elif sys.argv[1] == "clickjacking":
         clickjacking()
+    elif sys.argv[1] == "basic_info":
+        basic_info()
