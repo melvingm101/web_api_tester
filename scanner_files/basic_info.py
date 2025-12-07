@@ -28,7 +28,7 @@ def discover_cves(params):
             [
                 { "name": "CVE ID", "style": "info" },
                 { "name": "Score", "style": "warning" },
-                { "name": "Category", "style": "error_label" },
+                { "name": "Category", "style": "danger" },
                 { "name": "URL", "style": "info" },
             ],
             critical_issues
