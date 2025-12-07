@@ -74,6 +74,6 @@ def read_scan_report(filepath):
         )
     except Exception as e:
         # Handle other general errors
-        print_error(f"An unexpected error occurred: {e}")
+        print_error(f"An unexpected error occurred. Check if the website URL is correct.")
 
 read_scan_report(REPORT_FILENAME)
