@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-from utils.output_print import print_info, print_success, print_error, print_panel, print_progress_bar, return_console
+from utils.output_print import print_info, print_success, print_error, print_panel, print_progress_bar, return_console, print_info_label
 from active_scan import scan_url
 
 def get_all_links(url):
@@ -28,7 +28,7 @@ def run_full_scan():
 
     base_domain = urlparse(start_url).netloc
 
-    print_info(f"[Phase 1] Map the website: Crawling {start_url}...")
+    print_info(f"{print_info_label("PHASE 1")} Map the website: Crawling {start_url}...")
 
     level_1_links = get_all_links(start_url)
 
@@ -59,7 +59,7 @@ def run_full_scan():
         print_error("Still no parameters found. The site might use REST API or JavaScript navigation.")
         return
 
-    print_success(f"[Phase 2] Attack Started! Found {len(targets_to_scan)} unique targets with parameters.")
+    print_success(f"{print_info_label("PHASE 2")} Attack Started! Found {len(targets_to_scan)} unique targets with parameters.")
     print("-" * 50)
 
     for i, target in enumerate(targets_to_scan, 1):

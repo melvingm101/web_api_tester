@@ -1,6 +1,6 @@
 import requests
 import sys
-from utils.output_print import print_error, print_success, print_info, print_panel
+from utils.output_print import print_error, print_success, print_info, print_panel, print_error_label, print_success_label
 
 # 1. The scanning logic (Optimized for stability)
 def scan_url(target_url):
@@ -30,9 +30,9 @@ def scan_url(target_url):
                 break
         
         if is_sqli_vuln:
-            print_error(f"[CRITICAL] Possible SQL Injection detected in {target_url}", (0, 0))
+            print_error(f"{print_error_label("CRITICAL")} Possible SQL Injection detected in {target_url}", (0, 0))
         else:
-            print_success(f"[SAFE] No simple SQL errors in {target_url}", (0, 0))
+            print_success(f"{print_success_label("SAFE")} No simple SQL errors in {target_url}", (0, 0))
 
     except requests.exceptions.RequestException:
         # This handles "Site Down", "Connection Refused", etc. quietly
@@ -51,9 +51,9 @@ def scan_url(target_url):
             response = requests.get(xss_url, timeout=5, verify=False)
             
             if xss_payload in response.text:
-                print_error(f"[HIGH] Possible Reflected XSS detected in {target_url}", (0, 0))
+                print_error(f"{print_error_label("HIGH")} Possible Reflected XSS detected in {target_url}", (0, 0))
             else:
-                print_success(f"[SAFE] No XSS reflected in {target_url}", (0, 0))
+                print_success(f"{print_success_label("SAFE")} No XSS reflected in {target_url}", (0, 0))
 
         except requests.exceptions.RequestException:
              print_error(f"[!] Connection failed for XSS test on {target_url}")

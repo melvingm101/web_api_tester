@@ -12,9 +12,21 @@ custom_theme = Theme({
     "warning": "#FFFC31",
     "danger": "#D1345B"+ " bold",
     "success": "#1EFFBC" + " bold",
+    "error_label": "bold reverse #D1345B",
+    "success_label": "bold reverse #1EFFBC",
+    "info_label": "bold reverse #65CCFF"
 })
 
 console=Console(theme=custom_theme)
+
+def print_info_label(message):
+    return f"[info_label] {message} [/info_label]"
+
+def print_success_label(message):
+    return f"[success_label] {message} [/success_label]"
+
+def print_error_label(message):
+    return f"[error_label] {message} [/error_label]"
 
 def return_console():
     return console
