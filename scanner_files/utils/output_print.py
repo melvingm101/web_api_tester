@@ -4,32 +4,51 @@ from rich.theme import Theme
 from rich.table import Table
 from rich.panel import Panel
 from rich.tree import Tree
+from rich.padding import Padding
 
 custom_theme = Theme({
-    "info": "cyan3",
-    "warning": "sky_blue1",
-    "danger": "red3",
-    "success": "green",
-    "repr.number": "bold sky_blue1"
+    "regular": "#EFEFEF",
+    "info": "#65CCFF",
+    "warning": "#FFFC31",
+    "danger": "#D1345B"+ " bold",
+    "success": "#1EFFBC" + " bold",
 })
 
 console=Console(theme=custom_theme)
 
-def print_console_test(message):
+def add_padding(item, padding_tuple):
+    """
+    add_padding adds padding around the element
+    
+    :param item: Item where we need to add padding. Can be text, panel, tree etc.
+    :param padding_tuple: Should be in format (x, y), where x -> top/bottom padding and y -> left/right padding
+    """
+    return Padding(
+        item,
+        padding_tuple
+    )
+
+def print_no_style(message):
     console.print(message)
 
 def print_info(message):
     console.print(message, style="info")
 
 def print_tree(options_list):
-    tree = Tree("Options")
+    tree = Tree("Options", guide_style="bold")
     for option in options_list:
         tree.add(option)
     
     console.print(tree)
 
 def print_panel(message, heading):
-    console.print(Panel(message, title=heading), style="info", justify="center")
+    console.print(
+        add_padding(
+            Panel(f"[italic][regular]{message}", title=heading),
+            (2, 4)
+        ),
+        style="info", justify="center"
+    )
 
 def print_table(table_title, columns, data_tuple_list):
     """
@@ -55,7 +74,7 @@ def print_success(message):
 
     :param message: Message that needs to be printed out
     """
-    console.print(message, style="success")
+    console.print(add_padding(f":white_check_mark: {message}", (1, 0)), style="success")
 
 def print_error(message):
     """
@@ -63,7 +82,7 @@ def print_error(message):
 
     :param message: Message that needs to be printed out
     """
-    console.print(message, style="danger")
+    console.print(add_padding(f":cross_mark: {message}", (1, 0)), style="danger")
 
 def print_progress_bar(func, message, *args):
     with console.status(message) as status:

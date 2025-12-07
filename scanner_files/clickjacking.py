@@ -1,5 +1,5 @@
 import os
-from utils.output_print import print_error, print_console_test, print_info, print_success
+from utils.output_print import print_error, print_info, print_success
 from utils.file_process import parse_json
 from flask import Flask, render_template
 
