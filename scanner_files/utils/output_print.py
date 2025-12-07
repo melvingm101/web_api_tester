@@ -16,6 +16,9 @@ custom_theme = Theme({
 
 console=Console(theme=custom_theme)
 
+def return_console():
+    return console
+
 def add_padding(item, padding_tuple):
     """
     add_padding adds padding around the element

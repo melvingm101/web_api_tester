@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-from utils.output_print import print_info, print_success, print_error, print_panel, print_progress_bar
+from utils.output_print import print_info, print_success, print_error, print_panel, print_progress_bar, return_console
 from active_scan import scan_url
 
 def get_all_links(url):
@@ -42,16 +42,18 @@ def run_full_scan():
         if "=" in link:
             targets_to_scan.add(link)
 
+    current_console = return_console()
     count = 0
-    for page in internal_links:
-        count += 1
-        if count % 3 == 0:
-            print(f" ... digging into page {count}/{len(internal_links)}")
+    with current_console.status("Digging into pages...") as status:
+        for page in internal_links:
+            count += 1
+            if count % 3 == 0:
+                print(f" ...Done with page {count}/{len(internal_links)}")
 
-        sub_links = get_all_links(page)
-        for sub_link in sub_links:
-            if "=" in sub_link and urlparse(sub_link).netloc == base_domain:
-                targets_to_scan.add(sub_link)
+            sub_links = get_all_links(page)
+            for sub_link in sub_links:
+                if "=" in sub_link and urlparse(sub_link).netloc == base_domain:
+                    targets_to_scan.add(sub_link)
 
     if not targets_to_scan:
         print_error("Still no parameters found. The site might use REST API or JavaScript navigation.")
