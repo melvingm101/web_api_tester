@@ -12,7 +12,7 @@ def clickjacking():
     )
 
     print_no_style(f"Before proceeding, please ensure to check if your clickjacking template is present in this directory with the filename clickjacking_template.html: [warning]{Path.cwd()}/templates")
-    
+
     print_info(
         add_padding(
             "If template is placed, please type the website you wish to test clickjacking on: ",
@@ -31,7 +31,14 @@ def main_menu():
     )
 
     print_tree(
-        ["1) Check details of given website", "2) Clickjacking test", "3) Exit"]
+        [
+            "1) Check details of website (Passive)",
+            "2) Full Auto Scan",
+            "3) Active Scan (Single URL)",
+            "4) Web Crawler",
+            "5) Clickjacking test",
+            "6) Exit"
+        ]
     )
 
     print_info("Please type any of the options above to continue [bold][1/2/3]:")
