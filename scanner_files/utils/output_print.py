@@ -68,13 +68,13 @@ def print_table(table_title, columns, data_tuple_list):
     
     console.print(add_padding(table, (1, 0)))
 
-def print_success(message):
+def print_success(message, padding_tuple=(1, 0)):
     """
     print_success will print the success message on terminal based on the theme.
 
     :param message: Message that needs to be printed out
     """
-    console.print(add_padding(f":white_check_mark: {message}", (1, 0)), style="success")
+    console.print(add_padding(f":white_check_mark: {message}", padding_tuple), style="success")
 
 def print_error(message, padding_tuple=(1, 0)):
     """

@@ -62,7 +62,7 @@ def read_scan_report(filepath):
             print_success("No CVEs detected")
         
         # Print the other information in a table
-        print_success(f"More details about {website_details["target"]}:")
+        print_success(f"More details about {website_details["target"]}:", (0, 0))
         print_table("",
             [
                 { "name": "Header info", "style": "info" },
