@@ -66,7 +66,7 @@ def print_table(table_title, columns, data_tuple_list):
     for data_item in data_tuple_list:
         table.add_row(*data_item)
     
-    console.print(table)
+    console.print(add_padding(table, (1, 0)))
 
 def print_success(message):
     """
