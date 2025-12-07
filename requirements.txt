@@ -1,2 +1,6 @@
 nvdlib
 rich
+Jinja2
+flask
+bs4
+requests

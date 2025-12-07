@@ -1,6 +1,5 @@
 #!/bin/bash
-python main_menu.py "basic_info"
-echo "Please enter the website you wish to scan: "
+python main_menu.py "clickjacking"
 read website_name
 
 # website_name would contain something like http://test-website:3000
@@ -8,8 +7,9 @@ read website_name
 rm -f scan_report.json
 
 # This will run whatweb which will provide a lengthy verbose output with -v
+# Aggressive setting is set to 3 with -a 3
 # Output is logged in scan_report.json
 mkdir -p webscan
-whatweb -q --log-json=$(pwd)/webscan/scan_report.json $website_name
-python basic_info.py
+whatweb -q --log-json=$(pwd)/webscan/scan_report.json -a 3 $website_name
+python clickjacking.py
 rm -f webscan/scan_report.json
