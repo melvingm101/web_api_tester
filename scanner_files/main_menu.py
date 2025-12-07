@@ -33,10 +33,10 @@ def main_menu():
     print_tree(
         [
             "1) Check details of website (Passive)",
-            "2) Full Auto Scan",
-            "3) Active Scan (Single URL)",
-            "4) Web Crawler",
-            "5) Clickjacking test",
+            "2) Active Scan (Single URL)",
+            "3) Web Crawler",
+            "4) Full Auto Scan",
+            "5) Test for clickjacking",
             "6) Exit"
         ]
     )
