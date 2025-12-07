@@ -50,7 +50,7 @@ def main_menu():
         ]
     )
 
-    print_info("Please type any of the options above to continue [bold][1/2/3]:")
+    print_info("Please type any of the options above to continue [bold][1/2/3/4/5/6]:")
 
 if __name__ == "__main__":
     if sys.argv[1] == "main_menu":
