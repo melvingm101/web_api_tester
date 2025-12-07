@@ -76,13 +76,13 @@ def print_success(message):
     """
     console.print(add_padding(f":white_check_mark: {message}", (1, 0)), style="success")
 
-def print_error(message):
+def print_error(message, padding_tuple=(1, 0)):
     """
     print_error will print the error message on terminal based on the theme.
 
     :param message: Message that needs to be printed out
     """
-    console.print(add_padding(f":cross_mark: {message}", (1, 0)), style="danger")
+    console.print(add_padding(f":cross_mark: {message}", padding_tuple), style="danger")
 
 def print_progress_bar(func, message, *args):
     with console.status(message) as status:

@@ -21,7 +21,7 @@ def discover_cves(params):
         ]
         
         # The vulnerabilities are now listed.
-        print_error(f"{vuln_count} vulnerability records present")
+        print_error(f"{vuln_count} vulnerability records present", (0, 0))
         if len(critical_issues) > 0:
             print_error(f"{len(critical_issues)} high/critical CVEs found:")
             print_table("",
