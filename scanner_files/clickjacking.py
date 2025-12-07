@@ -20,7 +20,7 @@ def home():
 # What the result should show
 @app.route("/ideal")
 def ideal_route():
-    return render_template('clickjacking_template.html', external_url="https://www.google.com")
+    return render_template('ideal_template.html', external_url="https://www.google.com")
 
 # Setting this will ensure Flask does not show anything in terminal. 
 app.logger.disabled = True
