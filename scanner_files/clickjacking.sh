@@ -10,6 +10,6 @@ rm -f scan_report.json
 # Aggressive setting is set to 3 with -a 3
 # Output is logged in scan_report.json
 mkdir -p webscan
-whatweb -q --log-json=$(pwd)/webscan/scan_report.json -a 3 $website_name
+whatweb -q --log-json=$(pwd)/webscan/scan_report.json $website_name
 python clickjacking.py
 rm -f webscan/scan_report.json
