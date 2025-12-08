@@ -70,8 +70,6 @@ def read_scan_report(filepath):
         if len(services) > 0:
             # Find CVEs associated with the service
             print_progress_bar(loop_through_cves, "[info]Searching for CVEs...", services)
-        else:
-            print_success("No CVEs detected")
         
         # Print the other information in a table
         print_success(f"More details about {website_details["target"]}:", (0, 0))
