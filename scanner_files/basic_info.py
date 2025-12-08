@@ -59,6 +59,11 @@ def read_scan_report(filepath):
         if "X-Powered-By" in other_info:
             if 'php' in other_info["X-Powered-By"].lower():
                 php_tech, php_ver = parse_x_powered_by(other_info["X-Powered-By"])
+                if any("php" in single_service.lower() for single_service in services):
+                    new_services = [
+                        item for item in services if "php" not in item.lower()
+                    ]
+                    services = new_services
                 services.append(f"{php_tech} {php_ver}")
 
         # Check if there are any services listed
