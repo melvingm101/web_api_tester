@@ -36,9 +36,6 @@ def discover_cves(params):
         )
         else:
             print_success("No high/critical CVEs detected.")
-    else:
-        # If list is empty, no CVEs are detected.
-        print_success("No CVEs detected.")
 
 def loop_through_cves(services):
     for service in services:
