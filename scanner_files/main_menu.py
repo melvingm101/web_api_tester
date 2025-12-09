@@ -11,24 +11,6 @@ def basic_info():
         ":clipboard: Passive scan"
     )
 
-def clickjacking():
-    """
-    This clickjacking function prints the introduction of the clickjacking section. 
-    """
-    print_panel(
-        "Clickjacking is a method of tricking users on clicking on items which indirectly causes other actions to occur, such as tricking users into clicking on a button to get a free iPad, but instead their messages in another app is deleted.",
-        ":exclamation_question_mark: What is clickjacking?"
-    )
-
-    print_no_style(f"Before proceeding, please ensure to check if your clickjacking template is present in this directory with the filename clickjacking_template.html: [warning]{Path.cwd()}/templates")
-
-    print_info(
-        add_padding(
-            "If template is placed, please type the website you wish to test clickjacking on: ",
-            (1, 0)
-        )
-    )
-
 
 def main_menu():
     """
@@ -45,17 +27,14 @@ def main_menu():
             "2) Active Scan (Single URL)",
             "3) Web Crawler",
             "4) Full Auto Scan",
-            "5) Test for clickjacking",
-            "6) Exit"
+            "5) Exit"
         ]
     )
 
-    print_info("Please type any of the options above to continue [bold][1/2/3/4/5/6]:")
+    print_info("Please type any of the options above to continue [bold][1/2/3/4/5]:")
 
 if __name__ == "__main__":
     if sys.argv[1] == "main_menu":
         main_menu()
-    elif sys.argv[1] == "clickjacking":
-        clickjacking()
     elif sys.argv[1] == "basic_info":
         basic_info()

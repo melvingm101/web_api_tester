@@ -6,7 +6,6 @@ case $choice in
     2) python active_scan.py;;
     3) python crawler.py;;
     4) python full_scanner.py;;
-    5)./clickjacking.sh;;
-    6)echo "Exiting now...";;
+    5)echo "Exiting now...";;
     *)echo "Wrong option. Exiting now...";;
 esac
