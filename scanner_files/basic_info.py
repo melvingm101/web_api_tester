@@ -83,6 +83,7 @@ def read_scan_report(data_string):
     except Exception as e:
         # Handle other general errors
         print_error(f"An unexpected error occurred. Check if the website URL is correct and re-run the scan again.")
+        print(e)
 
 json_data_string = sys.stdin.read()
 if not json_data_string:
