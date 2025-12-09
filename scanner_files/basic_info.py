@@ -36,7 +36,7 @@ def discover_cves(params):
 
 def loop_through_cves(services):
     for service in services:
-        print_info(f"Service found: {service}")
+        print_info(f"Technology found: {service}")
         discover_cves(service)
 
 # This function will read and parse the JSON provided by whatweb
