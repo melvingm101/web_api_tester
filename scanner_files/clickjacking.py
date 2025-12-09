@@ -57,7 +57,8 @@ def clickjacking_test(filepath):
     if not clickjacking_support:
         print_success("Clickjacking headers in place.")
     else:
-        print_error("No X-Frame-Options or CSP Headers present! Please wait for the server to start to see the clickjacking page.")
+        print_error("No X-Frame-Options or CSP Headers present!")
+        print_error("Please wait for the server to start to see the clickjacking page.")
 
         # This section passes the website URL, so that Flask can run the server and pass
         # this URL in the HTML template.
