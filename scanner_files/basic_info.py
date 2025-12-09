@@ -1,7 +1,7 @@
 import sys
 import nvdlib
 
-from utils.output_print import print_error, print_success, print_progress_bar, print_table, print_info
+from utils.output_print import print_error, print_success, print_progress_bar, print_table, print_info, print_panel
 from utils.file_process import parse_json
 from utils.parse_headers import parse_x_powered_by
 from utils.clickjacking import is_clickjacking_possible
@@ -75,12 +75,16 @@ def read_scan_report(data_string):
             ]
         )
 
+        print_panel(
+            "Clickjacking is a method of tricking users on clicking on items which indirectly causes other actions to occur. Eg: tricking users into clicking on a button to get a free iPad, but instead their messages in the vulnerable application is deleted.",
+            ":exclamation_question_mark: What is clickjacking?"
+        )
         clickjacking_support = is_clickjacking_possible(header_info=other_info)
         if not clickjacking_support:
             print_success("X-Frame-Options/CSP headers are in place, the provided website is safe from clickjacking")
         else:
             print_error("No X-Frame-Options or CSP Headers present, website is vulnerable to clickjacking.")
-    except Exception as e:
+    except Exception:
         # Handle other general errors
         print_error(f"An unexpected error occurred. Check if the website URL is correct and re-run the scan again.")
 
