@@ -18,13 +18,14 @@ def discover_cves(params):
     if vuln_count > 0:
         # Gets a list of high/critical vulnerabilities
         critical_issues = [
-            (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
+            (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) 
+            for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
         ]
         
         # The vulnerabilities are now listed.
         print_error(f"[danger]{vuln_count} vulnerability records present", (0, 0))
         if len(critical_issues) > 0:
-            print_error(f"[danger]{len(critical_issues)} high/critical CVEs found:", (0, 0))
+            print_error(f"Some high/critical CVE records include:", (0, 0))
             print_table("",
             [
                 { "name": "CVE ID", "style": "info" },
@@ -34,8 +35,6 @@ def discover_cves(params):
             ],
             critical_issues
         )
-        else:
-            print_success("No high/critical CVEs detected.")
 
 def loop_through_cves(services):
     for service in services:
@@ -81,6 +80,6 @@ def read_scan_report(filepath):
         )
     except Exception as e:
         # Handle other general errors
-        print_error(f"An unexpected error occurred. Check if the website URL is correct.")
+        print_error(f"An unexpected error occurred. Check if the website URL is correct and re-run the scan again.")
 
 read_scan_report(REPORT_FILENAME)

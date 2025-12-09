@@ -22,7 +22,7 @@ def home():
 def ideal_route():
     return render_template('ideal_template.html', external_url="https://www.google.com")
 
-# Setting this will ensure Flask does not show anything in terminal. 
+# Setting this will ensure Flask does not show a lot of details in terminal. 
 app.logger.disabled = True
 
 def is_clickjacking_possible(header_info):
