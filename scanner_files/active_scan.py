@@ -30,7 +30,7 @@ def scan_url(target_url):
                 break
         
         if is_sqli_vuln:
-            print_error(f"{print_error_label("CRITICAL")} Possible SQL Injection detected in {target_url}", (0, 0))
+            print_error(f"{print_error_label("WARNING")} Possible SQL Injection detected in {target_url}", (0, 0))
         else:
             print_success(f"{print_success_label("SAFE")} No simple SQL errors in {target_url}", (0, 0))
 
@@ -51,7 +51,7 @@ def scan_url(target_url):
             response = requests.get(xss_url, timeout=5, verify=False)
             
             if xss_payload in response.text:
-                print_error(f"{print_error_label("HIGH")} Possible Reflected XSS detected in {target_url}", (0, 0))
+                print_error(f"{print_error_label("WARNING")} Possible Reflected XSS detected in {target_url}", (0, 0))
             else:
                 print_success(f"{print_success_label("SAFE")} No XSS reflected in {target_url}", (0, 0))
 
