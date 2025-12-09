@@ -6,4 +6,4 @@ read website_name
 # website_name would contain something like http://test-website:3000
 # This will run whatweb which will provide a lengthy verbose output with -v
 # Whatweb results would be passed in the basic_info.py file
-whatweb -q $website_name --log-json --output-sync | python basic_info.py
+whatweb $website_name --log-json --output-sync | python basic_info.py
