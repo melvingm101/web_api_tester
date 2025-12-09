@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-from utils.output_print import print_info, print_success, print_error, print_panel, print_progress_bar, return_console, print_info_label
+from utils.output_print import print_info, print_success, print_error, print_panel, return_console, print_info_label
 from active_scan import scan_url
 
 def get_all_links(url):

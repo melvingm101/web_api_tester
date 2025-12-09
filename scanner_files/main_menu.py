@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from utils.output_print import print_panel, print_tree, print_info, print_no_style, add_padding
+from utils.output_print import print_panel, print_tree, print_info
 
 def basic_info():
     """
