@@ -43,10 +43,8 @@ def discover_cves(params):
                 critical_issues
             )
         
-    except nvdlib.APIException as e:
-        print(f"Error during CPE search: {e}")
-        # Handle API key or rate limit error
-        cpe_results = None
+    except Exception as e:
+        print(f"Error during CVE search: {e}")
 
 def loop_through_cves(services):
     for service in services:
