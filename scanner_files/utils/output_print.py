@@ -21,10 +21,11 @@ custom_theme = Theme({
 console=Console(theme=custom_theme)
 
 def print_interactive_selection(question, question_list):
-    return questionary.select(
+    final_item = questionary.select(
         question,
         choices=question_list,
     ).ask()
+    return final_item
 
 def print_info_label(message):
     return f"[info_label] {message} [/info_label]"
