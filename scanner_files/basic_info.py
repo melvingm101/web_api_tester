@@ -8,10 +8,9 @@ from utils.clickjacking import is_clickjacking_possible
 
 def discover_cves(params):
     try:
-        print_error(f"Here is the param: {params}")
         r = nvdlib.searchCPE_V2(keywordSearch = params, limit = 1)
         firstCPE = next(r)
-        print_info(f"Using CPE string: {firstCPE.cpeName}...")
+        print_info(f"Using CPE string: [info]{firstCPE.cpeName}...[/info]")
 
         # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
         search_params = { "cpeName": firstCPE.cpeName, "limit": 5 }
