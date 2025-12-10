@@ -1,6 +1,6 @@
-# Web API Tester
+# Website Security Tester
 
-This project is a sample Web API tester project. It contains the test website and the files to test Web API security. We would need Python installed to run these files, which we can do here: [Python Download](https://www.python.org/downloads/)
+This project is a sample Website Security tester project. It contains the test website and the files to test a website's security. We would need Python installed to run these files, which we can do here: [Python Download](https://www.python.org/downloads/)
 
 ## Setup
 
