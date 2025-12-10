@@ -10,7 +10,7 @@ def discover_cves(params):
     try:
         r = nvdlib.searchCPE_V2(keywordSearch = params, limit = 1)
         firstCPE = next(r, None)
-        
+
         if firstCPE == None:
             return
 
@@ -44,7 +44,7 @@ def discover_cves(params):
             )
         
     except Exception as e:
-        raise e
+        print_error(f"Error during CVE search: {e}")
 
 def loop_through_cves(services):
     for service in services:
@@ -99,7 +99,6 @@ def read_scan_report(data_string):
     except Exception as e:
         # Handle other general errors
         print_error(f"An unexpected error occurred. Check if the website URL is correct and re-run the scan again.")
-        raise e
 
 json_data_string = sys.stdin.read()
 if not json_data_string:
