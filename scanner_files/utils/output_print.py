@@ -6,6 +6,7 @@ from rich.panel import Panel
 from rich.tree import Tree
 from rich.padding import Padding
 import questionary
+import sys
 
 custom_theme = Theme({
     "regular": "#EFEFEF",
@@ -25,6 +26,10 @@ def print_interactive_selection(question, question_list):
         question,
         choices=question_list,
     ).ask()
+
+    if final_item is None:
+        sys.exit(1)
+
     return final_item
 
 def print_info_label(message):
