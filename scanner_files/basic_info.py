@@ -56,7 +56,7 @@ def read_scan_report(data_string):
                         item for item in services if "php" not in item.lower()
                     ]
                     services = new_services
-                services.append(f"*:*:{php_tech}:{php_ver}")
+                services.append(f"a:*:{php_tech}:{php_ver}")
 
         # Check if there are any services listed
         if len(services) > 0:
