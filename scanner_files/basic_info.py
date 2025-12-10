@@ -10,25 +10,10 @@ def discover_cves(params):
     search_params = { "keywordSearch": params }
 
     try:
-        cpe_generator = nvdlib.searchCPE(
-            keywordSearch=params,
-            keywordExactMatch=True, # Forces phrase matching for precision
-        )
-
-        try:
-            accurate_cpe_object = next(cpe_generator)
-            # You can now access its name property
-            cpe_name = accurate_cpe_object.cpe.cpeName 
-            print_success("Accurate CPE found: ", cpe_name)
-            
-            # Use the accurate CPE name for a VMS search (Best practice!)
-            # First, you must simplify the full CPE name to a VMS format 
-            # (e.g., 'a:nginx:nginx:1.19.0') before using it in a CVE search.
-            # We will use the original keyword search for now to avoid overcomplicating the fix:
-            
-        except StopIteration:
-            print_error("Error: No CPE record found for the exact keyword.")
-            return
+        print_error(f"Here is the param: {params}")
+        r = nvdlib.searchCPE(keywordSearch = params, limit = 2)
+        for eachCPE in r:
+            print(eachCPE.cpeName)
 
         # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
         vuln_list = nvdlib.searchCVE(**search_params)
