@@ -17,7 +17,7 @@ def parse_json(json_data_string):
                     plugins_list = website_details["plugins"]
                     for key in plugins_list:
                         if "version" in plugins_list[key]:
-                            services.append(f"a:*:{key}:{plugins_list[key]["version"][0]}")
+                            services.append(key + " " + plugins_list[key]["version"][0])
                         elif "string" in plugins_list[key]:
                             other_info[key] = plugins_list[key]["string"][0]
                 return website_details, services, other_info
