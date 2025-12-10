@@ -84,9 +84,10 @@ def read_scan_report(data_string):
             print_success("X-Frame-Options/CSP headers are in place, the provided website is safe from clickjacking")
         else:
             print_error("No X-Frame-Options or CSP Headers present, website is vulnerable to clickjacking.")
-    except Exception:
+    except Exception as e:
         # Handle other general errors
         print_error(f"An unexpected error occurred. Check if the website URL is correct and re-run the scan again.")
+        print(e)
 
 json_data_string = sys.stdin.read()
 if not json_data_string:
