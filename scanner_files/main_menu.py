@@ -32,6 +32,8 @@ def main_menu():
     print(final_item)
 
 if __name__ == "__main__":
+    print("Started")
+    print(sys.argv[1])
     if sys.argv[1] == "main_menu":
         main_menu()
     elif sys.argv[1] == "basic_info":
