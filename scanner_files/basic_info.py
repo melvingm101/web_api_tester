@@ -7,7 +7,7 @@ from utils.parse_headers import parse_x_powered_by
 from utils.clickjacking import is_clickjacking_possible
 
 def discover_cves(params):
-    search_params = { "keywordSearch": params }
+    search_params = { "virtualMatchString": params, "limit": 50 }
 
     # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
     vuln_list = nvdlib.searchCVE(**search_params)
@@ -56,7 +56,7 @@ def read_scan_report(data_string):
                         item for item in services if "php" not in item.lower()
                     ]
                     services = new_services
-                services.append(f"{php_tech} {php_ver}")
+                services.append(f"*:*:{php_tech}:{php_ver}")
 
         # Check if there are any services listed
         if len(services) > 0:
