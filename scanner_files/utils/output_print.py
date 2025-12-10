@@ -6,7 +6,6 @@ from rich.panel import Panel
 from rich.tree import Tree
 from rich.padding import Padding
 import questionary
-import sys
 
 custom_theme = Theme({
     "regular": "#EFEFEF",
