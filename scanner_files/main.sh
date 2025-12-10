@@ -1,5 +1,6 @@
 #!/bin/bash
-choice=$(python main_menu.py "main_menu" < /dev/tty)
+python main_menu.py "main_menu"
+choice=$(python main_menu.py "options")
 
 case $choice in
     "Check details of website (Passive)")./webcheck.sh;;

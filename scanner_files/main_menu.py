@@ -21,6 +21,7 @@ def main_menu():
         ":globe_with_meridians: Web Security Tester"
     )
 
+def options():
     final_item = print_interactive_selection("Website Tester Menu", [
         "Check details of website (Passive)",
         "Active Scan (Single URL)",
@@ -36,3 +37,5 @@ if __name__ == "__main__":
         main_menu()
     elif sys.argv[1] == "basic_info":
         basic_info()
+    elif sys.argv[1] == "options":
+        options()
