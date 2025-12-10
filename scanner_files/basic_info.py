@@ -1,7 +1,7 @@
 import sys
 import nvdlib
 
-from utils.output_print import print_error, print_success, print_progress_bar, print_table, print_info, print_panel
+from utils.output_print import print_error, print_success, print_progress_bar, print_table, print_info, print_panel, print_no_style
 from utils.file_process import parse_json
 from utils.parse_headers import parse_x_powered_by
 from utils.clickjacking import is_clickjacking_possible
@@ -10,10 +10,11 @@ def discover_cves(params):
     try:
         r = nvdlib.searchCPE_V2(keywordSearch = params, limit = 1)
         firstCPE = next(r)
-        print_info(f"Using CPE string: [info]{firstCPE.cpeName}...[/info]")
+        print_no_style(f"Using CPE string: [bold]{firstCPE.cpeName}...[/bold]")
 
         # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
-        search_params = { "cpeName": firstCPE.cpeName, "limit": 5 }
+        # For now, as this covers a basic scan, we keep the limit to 20
+        search_params = { "cpeName": firstCPE.cpeName, "limit": 20 }
         vuln_list = nvdlib.searchCVE(**search_params)
         vuln_count = len(vuln_list)
 
