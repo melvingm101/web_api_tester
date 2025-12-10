@@ -13,7 +13,6 @@ def discover_cves(params):
         cpe_generator = nvdlib.searchCPE_V2(
             keywordSearch=params,
             keywordExactMatch=True, # Forces phrase matching for precision
-            limit=1, 
         )
 
         try:
