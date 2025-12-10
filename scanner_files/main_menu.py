@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from utils.output_print import print_panel, print_tree, print_info, print_interactive_selection
+from utils.output_print import print_panel, print_interactive_selection
 
 def basic_info():
     """
