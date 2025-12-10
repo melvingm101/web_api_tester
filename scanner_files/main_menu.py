@@ -20,22 +20,21 @@ def main_menu():
         "Welcome to the Website Security Tester. Please choose among the options below in order to proceed.",
         ":globe_with_meridians: Web Security Tester"
     )
-
-def options():
     final_item = print_interactive_selection("Website Tester Menu", [
-        "Check details of website (Passive)",
-        "Active Scan (Single URL)",
-        "Web Crawler",
-        "Full Auto Scan",
-        "Exit"
+        { "title": "Check details of website (Passive)", "value": 1 },
+        { "title": "Active Scan (Single URL)", "value": 2 },
+        { "title": "Web Crawler", "value": 3 },
+        { "title": "Full Auto Scan", "value": 4 },
+        { "title": "Exit", "value": 5 },
     ])
 
-    print(final_item)
+    if final_item is None:
+        sys.exit(5)
+    else:
+        sys.exit(final_item)
 
 if __name__ == "__main__":
     if sys.argv[1] == "main_menu":
         main_menu()
     elif sys.argv[1] == "basic_info":
         basic_info()
-    elif sys.argv[1] == "options":
-        options()

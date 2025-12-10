@@ -24,11 +24,13 @@ console=Console(theme=custom_theme)
 def print_interactive_selection(question, question_list):
     final_item = questionary.select(
         question,
-        choices=question_list,
+        choices=[
+            questionary.Choice(
+                title=question["title"],
+                value=question["value"] 
+            ) for question in question_list
+        ],
     ).ask()
-
-    if final_item is None:
-        sys.exit(1)
 
     return final_item
 
