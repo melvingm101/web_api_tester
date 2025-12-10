@@ -14,7 +14,7 @@ def discover_cves(params):
         print_info(f"Using CPE string: {firstCPE.cpeName}...")
 
         # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
-        search_params = { "cpeName": firstCPE, "limit": 5 }
+        search_params = { "cpeName": firstCPE.cpeName, "limit": 5 }
         vuln_list = nvdlib.searchCVE(**search_params)
         vuln_count = len(vuln_list)
 
