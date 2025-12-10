@@ -8,6 +8,8 @@ from utils.clickjacking import is_clickjacking_possible
 
 def discover_cves(params):
     try:
+        print(params)
+        print("Comes here")
         r = nvdlib.searchCPE_V2(keywordSearch = params, limit = 1)
         print("log 1")
         firstCPE = next(r)
@@ -43,7 +45,7 @@ def discover_cves(params):
             )
         
     except Exception as e:
-        print(f"Error during CVE search: {e}")
+        raise e
 
 def loop_through_cves(services):
     for service in services:
