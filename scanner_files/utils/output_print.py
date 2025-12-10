@@ -5,6 +5,7 @@ from rich.table import Table
 from rich.panel import Panel
 from rich.tree import Tree
 from rich.padding import Padding
+import questionary
 
 custom_theme = Theme({
     "regular": "#EFEFEF",
@@ -18,6 +19,19 @@ custom_theme = Theme({
 })
 
 console=Console(theme=custom_theme)
+
+def print_interactive_selection(question, question_list):
+    final_item = questionary.select(
+        question,
+        choices=[
+            questionary.Choice(
+                title=question["title"],
+                value=question["value"] 
+            ) for question in question_list
+        ],
+    ).ask()
+
+    return final_item
 
 def print_info_label(message):
     return f"[info_label] {message} [/info_label]"

@@ -1,38 +1,50 @@
 import sys
 import nvdlib
 
-from utils.output_print import print_error, print_success, print_progress_bar, print_table, print_info, print_panel
+from utils.output_print import print_error, print_success, print_progress_bar, print_table, print_info, print_panel, print_no_style
 from utils.file_process import parse_json
 from utils.parse_headers import parse_x_powered_by
 from utils.clickjacking import is_clickjacking_possible
 
 def discover_cves(params):
-    search_params = { "keywordSearch": params }
+    try:
+        r = nvdlib.searchCPE_V2(keywordSearch = params, limit = 1)
+        firstCPE = next(r, None)
 
-    # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
-    vuln_list = nvdlib.searchCVE(**search_params)
-    vuln_count = len(vuln_list)
+        if firstCPE == None:
+            return
 
-    if vuln_count > 0:
-        # Gets a list of high/critical vulnerabilities
-        critical_issues = [
-            (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) 
-            for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
-        ]
+        print_no_style(f"Using CPE string: [bold #EFEFEF]{firstCPE.cpeName}[/bold #EFEFEF]")
+
+        # This searches the CVE database for keywords like apache 2.4.4 to find vulnerabilities
+        # For now, as this covers a basic scan, we keep the limit to 20
+        search_params = { "cpeName": firstCPE.cpeName, "limit": 20 }
+        vuln_list = nvdlib.searchCVE(**search_params)
+        vuln_count = len(vuln_list)
+
+        if vuln_count > 0:
+            # Gets a list of high/critical vulnerabilities
+            critical_issues = [
+                (cve_data.id, str(cve_data.score[1]), cve_data.score[2], cve_data.url) 
+                for cve_data in vuln_list if cve_data.score[2] in ["HIGH", "CRITICAL"]
+            ]
+            
+            # The vulnerabilities are now listed.
+            print_error(f"[danger]{vuln_count} vulnerability records present", (0, 0))
+            if len(critical_issues) > 0:
+                print_error(f"Some high/critical CVE records include:", (0, 0))
+                print_table("",
+                [
+                    { "name": "CVE ID", "style": "info" },
+                    { "name": "Score", "style": "warning" },
+                    { "name": "Category", "style": "danger" },
+                    { "name": "URL", "style": "info" },
+                ],
+                critical_issues
+            )
         
-        # The vulnerabilities are now listed.
-        print_error(f"[danger]{vuln_count} vulnerability records present", (0, 0))
-        if len(critical_issues) > 0:
-            print_error(f"Some high/critical CVE records include:", (0, 0))
-            print_table("",
-            [
-                { "name": "CVE ID", "style": "info" },
-                { "name": "Score", "style": "warning" },
-                { "name": "Category", "style": "danger" },
-                { "name": "URL", "style": "info" },
-            ],
-            critical_issues
-        )
+    except Exception as e:
+        print_error(f"Error during CVE search: {e}")
 
 def loop_through_cves(services):
     for service in services:
@@ -84,7 +96,7 @@ def read_scan_report(data_string):
             print_success("X-Frame-Options/CSP headers are in place, the provided website is safe from clickjacking")
         else:
             print_error("No X-Frame-Options or CSP Headers present, website is vulnerable to clickjacking.")
-    except Exception:
+    except Exception as e:
         # Handle other general errors
         print_error(f"An unexpected error occurred. Check if the website URL is correct and re-run the scan again.")
 

@@ -1,7 +1,8 @@
 #!/bin/bash
 python main_menu.py "main_menu"
-read choice
-case $choice in
+CHOICE=$?
+
+case $CHOICE in
     1)./webcheck.sh;;
     2) python active_scan.py;;
     3) python crawler.py;;
