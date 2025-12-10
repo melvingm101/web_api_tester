@@ -10,7 +10,7 @@ def discover_cves(params):
     search_params = { "keywordSearch": params }
 
     try:
-        cpe_generator = nvdlib.searchCPE_V2(
+        cpe_generator = nvdlib.searchCPE(
             keywordSearch=params,
             keywordExactMatch=True, # Forces phrase matching for precision
         )
