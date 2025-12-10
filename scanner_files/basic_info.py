@@ -53,8 +53,6 @@ def loop_through_cves(services):
 
 # This function will read and parse the JSON provided by whatweb
 def read_scan_report(data_string):
-    # Check if JSON file exists
-    
     try:
         # Pass the scan report and get website details, services and other information
         website_details, services, other_info = parse_json(data_string)
